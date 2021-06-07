@@ -34,7 +34,7 @@ a response.  Usually, the materials for the request are passed in JSON format,
 and the response is transmitted back to the requesting client also in
 JSON format.
 
-A client, called 'ebf' is supplied with this distribution, which
+A client, called `ebf` is supplied with this distribution, which
 implements the API to provide a command line interface to the board
 farm REST API functionality.  It is very helpful to examine the
 source code for that client in order to see how the API is used
@@ -88,7 +88,7 @@ Each response is a JSON object.
 **message** (string) - GPIO command failure reason when result is a fail - OPTIONAL
 
 **Success Response (example)**
-```
+```yaml
 {
  "result": "success",
  "data": 255
@@ -96,7 +96,7 @@ Each response is a JSON object.
 ```
 
 **Error Response (example)**
-```
+```yaml
 {
  "result": "fail",
  "message": "One or more GPIO pins being written to is in input mode."
@@ -107,7 +107,7 @@ Finally, here is the openapi specification for the gpio read operation.
 
 **OpenAPI specification**
 
-```
+```yaml
 openapi: 3.0.0
 info:
   title: Generated for BFC-TAS
@@ -142,7 +142,7 @@ paths:
                   - result
 ```
 
-```
+```yaml
 openapi: 3.0.0
 info:
   title: Generated for BFC-TAS
@@ -189,12 +189,12 @@ paths:
 
 ## List of operations supported in ebf:
 
-Following is a list of operations currently supported by ebf,
+Following is a list of operations currently supported by `ebf`,
 and their general meaning:
 
-Here is a sample curl command from 'ebf':
+Here is a sample `curl` command from `ebf`:
 
-```
+```shell
 OUTPUT=$(curl -s -k --location --request GET "$SERVER_URL/api/v0.2/devices/"  --header 'Authorization: token '$AUTH_TOKEN'')
 DEVICE_LIST=( $(echo $OUTPUT|jq -r '.[].hostname') )
 ```
@@ -205,7 +205,7 @@ individual elements from the OUTPUT are parsed using 'jq'.  In this
 case, the output is parsed into a list.  Other times, jq is used to
 parse individual fields from the returned data, like the following:
 
-```
+```shell
 RESULT=$(echo $OUTPUT|jq -r .result)
 MESSAGE=$(echo $OUTPUT|jq -r .message)
 ```
