@@ -49,16 +49,21 @@ under test.
 
 ## GPIO API
 
-**Endpoint URI**
+### GPIO: Endpoint URI
 ```
 https//bfc.timesys.com/api/{DeviceName}/gpio/{gpio_command}/{gpio_pin_pattern(location)}/{gpio_pin_data}
 ```
+
+### GPIO: Endpoint Parameters
+
 Parameter | Type | Description
 ------------ | ------------- | -------------
 `DeviceName` | String | Name of device in Board Farm
 `gpio_command` | String | Any GPIO command supported by the API
 `gpio_pin_pattern(location)` | Integer | GPIO Pin number or pattern mask
 `gpio_pin_data` | Integer/String | For GPIO pin commands - GPIO Pin mode or set value. For GPIO mask commands - mode mask and mask patterns.
+
+### GPIO: Endpoint Commands
 
 Here is a list of different GPIO operations in the lab, and the
 URI paths associated with those operations.
@@ -76,18 +81,18 @@ get | `read_mask` | `GET /api/{DeviceName}/gpio/read_mask/{Lab pin locations pat
 
 NOTE: `mode` refers to read/write. Pattern 0-255 is for a 8 pin GPIO controller. It would vary for controllers having more/less GPIO lines.
 
-**Responses**
-**Format**
+### GPIO: Responses
 
-Each response is a JSON object.
+Each response is a JSON object with the following members:
 
-**result** (string) - success/fail
+Membmr | Type | Description
+---- | ---- | ----
+`result` | string | success/fail
+`data` | integer/string | GPIO command dependent (optional)
+`message` | string | GPIO command failure reason when result is a fail (optional)
 
-**data** (integer/string) - GPIO command dependent - OPTIONAL
+#### GPIO: Example: Success Response
 
-**message** (string) - GPIO command failure reason when result is a fail - OPTIONAL
-
-**Success Response (example)**
 ```yaml
 {
  "result": "success",
@@ -95,7 +100,8 @@ Each response is a JSON object.
 }
 ```
 
-**Error Response (example)**
+#### GPIO: Example: Error Response
+
 ```yaml
 {
  "result": "fail",
@@ -103,9 +109,10 @@ Each response is a JSON object.
 }
 ```
 
+### GPIO: OpenAPI Specification
+
 Finally, here is the openapi specification for the gpio read operation.
 
-**OpenAPI specification**
 
 ```yaml
 openapi: 3.0.0
@@ -142,7 +149,10 @@ paths:
                   - result
 ```
 
-**TO Be Defined**
+### GPIO: Future Work
+
+The following items remain to be defined or standardized:
+
 - [ ] Error codes
 - [ ] Error conditions and standardized error messages
 
