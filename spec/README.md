@@ -55,26 +55,26 @@ https//bfc.timesys.com/api/{DeviceName}/gpio/{gpio_command}/{gpio_pin_pattern(lo
 ```
 Parameter | Type | Description
 ------------ | ------------- | -------------
-DeviceName | String | Name of device in Board Farm
-gpio_command | String | Any GPIO command supported by the API
-gpio_pin_pattern(location) | Integer | GPIO Pin number or pattern mask
-gpio_pin_data | Integer/String | For GPIO pin commands - GPIO Pin mode or set value. For GPIO mask commands - mode mask and mask patterns.
+`DeviceName` | String | Name of device in Board Farm
+`gpio_command` | String | Any GPIO command supported by the API
+`gpio_pin_pattern(location)` | Integer | GPIO Pin number or pattern mask
+`gpio_pin_data` | Integer/String | For GPIO pin commands - GPIO Pin mode or set value. For GPIO mask commands - mode mask and mask patterns.
 
 Here is a list of different GPIO operations in the lab, and the
 URI paths associated with those operations.
 
 Method | GPIO Command | HTTP request
 ------------ | ------------- | -------------
-get | set_mode | GET /api/{DeviceName}/gpio/set_mode/{gpio_pin_number}/{write/read}
-get | get_mode | GET /api/{DeviceName}/gpio/get_mode/{gpio_pin_number}
-get | write | GET /api/{DeviceName}/gpio/write/{gpio_pin_number}/{0/1}
-get | read | GET /api/{DeviceName}/gpio/read/{gpio_pin_number}
-get | set_mode_mask | GET /api/{DeviceName}/gpio/set_mode_mask/{Lab pin locations pattern mask}/{0-255}
-get | get_mode_mask | GET /api/{DeviceName}/gpio/get_mode_mask/{Lab pin locations pattern mask}
-get | write_mask | GET /api/{DeviceName}/gpio/write_mask/{Lab pin locations pattern mask}/{0-255}
-get | read_mask | GET /api/{DeviceName}/gpio/read_mask/{Lab pin locations pattern mask}
+get | `set_mode` | `GET /api/{DeviceName}/gpio/set_mode/{gpio_pin_number}/{write/read}`
+get | `get_mode` | `GET /api/{DeviceName}/gpio/get_mode/{gpio_pin_number}`
+get | `write` | `GET /api/{DeviceName}/gpio/write/{gpio_pin_number}/{0/1}`
+get | `read` | `GET /api/{DeviceName}/gpio/read/{gpio_pin_number}`
+get | `set_mode_mask` | `GET /api/{DeviceName}/gpio/set_mode_mask/{Lab pin locations pattern mask}/{0-255}`
+get | `get_mode_mask` | `GET /api/{DeviceName}/gpio/get_mode_mask/{Lab pin locations pattern mask}`
+get | `write_mask` | `GET /api/{DeviceName}/gpio/write_mask/{Lab pin locations pattern mask}/{0-255}`
+get | `read_mask` | `GET /api/{DeviceName}/gpio/read_mask/{Lab pin locations pattern mask}`
 
-NOTE: "mode" refers to read/write. Pattern 0-255 is for a 8 pin GPIO controller. It would vary for controllers having more/less GPIO lines.
+NOTE: `mode` refers to read/write. Pattern 0-255 is for a 8 pin GPIO controller. It would vary for controllers having more/less GPIO lines.
 
 **Responses**
 **Format**
@@ -213,49 +213,49 @@ The set of different operations currently supported by 'ebf' is listed
 below, with redundant information removed:
 
 #### Authentication:
- * POST api/v0.2/token/  --header 'Content-Type: application/json' --data-raw '{"username":"'"$USER_NAME"'" , "password":"'"$PASSWORD"'"}
+ * `POST api/v0.2/token/  --header 'Content-Type: application/json' --data-raw '{"username":"'"$USER_NAME"'" , "password":"'"$PASSWORD"'"}`
 
 #### Boards and reservations:
- * GET  api/v0.2/devices/
- * GET  api/v0.2/devices/mine/
- * GET  api/v0.2/devices/$DEVICE
- * GET  api/v0.2/devices/$DEVICE/assign
- * GET  api/v0.2/devices/$DEVICE/release
- * GET  api/v0.2/devices/$DEVICE/release/force
+ * `GET  api/v0.2/devices/`
+ * `GET  api/v0.2/devices/mine/`
+ * `GET  api/v0.2/devices/$DEVICE`
+ * `GET  api/v0.2/devices/$DEVICE/assign`
+ * `GET  api/v0.2/devices/$DEVICE/release`
+ * `GET  api/v0.2/devices/$DEVICE/release/force`
 
 #### Power:
- * GET  api/v0.2/devices/$DEVICE/power
- * PUT  api/v0.2/devices/$DEVICE/power/on
- * PUT  api/v0.2/devices/$DEVICE/power/on-delay
- * PUT  api/v0.2/devices/$DEVICE/power/off
- * PUT  api/v0.2/devices/$DEVICE/power/off-delay
- * PUT  api/v0.2/devices/$DEVICE/power/reboot
- * PUT  api/v0.2/devices/$DEVICE/power/reboot-delay
- * PUT  api/v0.2/devices/$DEVICE/power/cancel-pending
+ * `GET  api/v0.2/devices/$DEVICE/power`
+ * `PUT  api/v0.2/devices/$DEVICE/power/on`
+ * `PUT  api/v0.2/devices/$DEVICE/power/on-delay`
+ * `PUT  api/v0.2/devices/$DEVICE/power/off`
+ * `PUT  api/v0.2/devices/$DEVICE/power/off-delay`
+ * `PUT  api/v0.2/devices/$DEVICE/power/reboot`
+ * `PUT  api/v0.2/devices/$DEVICE/power/reboot-delay`
+ * `PUT  api/v0.2/devices/$DEVICE/power/cancel-pending`
 
 #### Hotplug:
- * GET  api/v0.2/devices/$DEVICE/hotplug/${HOTPLUG_NUMBER}/
- * PUT  api/v0.2/devices/$DEVICE/hotplug/${HOTPLUG_NUMBER}/on/
- * PUT  api/v0.2/devices/$DEVICE/hotplug/${HOTPLUG_NUMBER}/off/
- * PUT  api/v0.2/devices/$DEVICE/hotplug/${HOTPLUG_NUMBER}/switch/
-
+ * `GET  api/v0.2/devices/$DEVICE/hotplug/${HOTPLUG_NUMBER}/`
+ * `PUT  api/v0.2/devices/$DEVICE/hotplug/${HOTPLUG_NUMBER}/on/`
+ * `PUT  api/v0.2/devices/$DEVICE/hotplug/${HOTPLUG_NUMBER}/off/`
+ * `PUT  api/v0.2/devices/$DEVICE/hotplug/${HOTPLUG_NUMBER}/switch/`
+`
 #### Execute and file transfers:
- * GET api/v0.2/devices/$DEVICE/run/serial/"  '' --data-raw '{ "command":"'"$DEVICE_COMMAND"'" }'
- * GET api/v0.2/devices/$DEVICE/run/ssh/"  '' --data-raw '{ "command": "'"$DEVICE_COMMAND"'"}'
+ * `GET api/v0.2/devices/$DEVICE/run/serial/"  '' --data-raw '{ "command":"'"$DEVICE_COMMAND"'" }'`
+ * `GET api/v0.2/devices/$DEVICE/run/ssh/"  '' --data-raw '{ "command": "'"$DEVICE_COMMAND"'"}'`
 
- * GET api/v0.2/devices/$DEVICE/download/serial/$FILE_PATH/ --output ${FILE_PATH##*/}
- * POST api/v0.2/devices/$DEVICE/upload/serial/ --form 'file=@'$FILE_PATH'
- * GET  api/v0.2/devices/$DEVICE/downld/ssh?path=$SRC_FILE_PATH --output ${DST_FILE_PATH}
+ * `GET api/v0.2/devices/$DEVICE/download/serial/$FILE_PATH/ --output ${FILE_PATH##*/}`
+ * `POST api/v0.2/devices/$DEVICE/upload/serial/ --form 'file=@'$FILE_PATH'`
+ * `GET  api/v0.2/devices/$DEVICE/downld/ssh?path=$SRC_FILE_PATH --output ${DST_FILE_PATH}`
 
- * POST api/v0.2/devices/$DEVICE/upld/ssh/ --form 'file=@'$SRC_FILE_PATH'' --form 'path='$DST_FILE_PATH'
+ * `POST api/v0.2/devices/$DEVICE/upld/ssh/ --form 'file=@'$SRC_FILE_PATH'' --form 'path='$DST_FILE_PATH'`
 
 #### GPIO
- * GET  api/v0.2/devices/$DEVICE/gpio/$COMMAND/$GPIO_PATTERN/$GPIO_DATA
+ * `GET  api/v0.2/devices/$DEVICE/gpio/$COMMAND/$GPIO_PATTERN/$GPIO_DATA`
 
 #### Console
- * GET  api/v0.2/devices/$DEVICE/console/serial/isactive/
- * GET  api/v0.2/devices/$DEVICE/console/serial/restart/
- * GET  api/v0.2/devices/$DEVICE/console/serial/isactive/
+ * `GET  api/v0.2/devices/$DEVICE/console/serial/isactive/`
+ * `GET  api/v0.2/devices/$DEVICE/console/serial/restart/`
+ * `GET  api/v0.2/devices/$DEVICE/console/serial/isactive/`
 
 ## TimeSys-specific APIs
 
@@ -268,14 +268,14 @@ Work is ongoing to identify non-neutral APIs and decide how to either
 generalize or isolate them.
 
 #### Zombie control and port forwarding:
- * GET  api/v0.2/devices/$DEVICE/portfw/nat/
- * GET  api/v0.2/devices/$DEVICE/portfw/ssh/
+ * `GET  api/v0.2/devices/$DEVICE/portfw/nat/`
+ * `GET  api/v0.2/devices/$DEVICE/portfw/ssh/`
 
- * POST api/v0.2/zombies/$ZOMBIE_NAME/portforward/nat/"  '' --data-raw '{ "device_ip":"'"$DEVICE_IP"'", "dut_port":"'"$DUT_PORT"'", "zombie_port":"'"$ZOMBIE_PORT"'", "pcol":"'"$PROTOCOL"'" }'
- * POST api/v0.2/devices/$DEVICE/portfw/ssh/"  '' --data-raw '{ "dut_ip":"'"$DEVICE_IP"'", "username":"'"$USERNAME"'", "dut_pw":"'"$PASSWORD"'", "dut_port":"'"$DUT_PORT"'", "zombie_port":"'"$ZOMBIE_PORT"'" }'
- * DELETE /api/v0.2/devices/$DEVICE/portfw/nat/"  '' --data-raw '{ "device_ip":"'"$DEVICE_IP"'", "dut_port":"'"$DUT_PORT"'", "zombie_port":"'"$ZOMBIE_PORT"'", "pcol":"'"$PROTOCOL"'" }'
- * DELETE /api/v0.2/zombies/$ZOMBIE_NAME/portforward/ssh/?ports=$ZOMBIE_PORT/"
+ * `POST api/v0.2/zombies/$ZOMBIE_NAME/portforward/nat/"  '' --data-raw '{ "device_ip":"'"$DEVICE_IP"'", "dut_port":"'"$DUT_PORT"'", "zombie_port":"'"$ZOMBIE_PORT"'", "pcol":"'"$PROTOCOL"'" }'`
+ * `POST api/v0.2/devices/$DEVICE/portfw/ssh/"  '' --data-raw '{ "dut_ip":"'"$DEVICE_IP"'", "username":"'"$USERNAME"'", "dut_pw":"'"$PASSWORD"'", "dut_port":"'"$DUT_PORT"'", "zombie_port":"'"$ZOMBIE_PORT"'" }'`
+ * `DELETE /api/v0.2/devices/$DEVICE/portfw/nat/"  '' --data-raw '{ "device_ip":"'"$DEVICE_IP"'", "dut_port":"'"$DUT_PORT"'", "zombie_port":"'"$ZOMBIE_PORT"'", "pcol":"'"$PROTOCOL"'" }'`
+ * `DELETE /api/v0.2/zombies/$ZOMBIE_NAME/portforward/ssh/?ports=$ZOMBIE_PORT/"`
 
 #### Miscellaneous
- * GET  api/v0.2/devices/$DEVICE/labcontrollers/
+ * `GET  api/v0.2/devices/$DEVICE/labcontrollers/`
 
